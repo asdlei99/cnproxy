@@ -1,8 +1,8 @@
-# NProxy
+# CNProxy
 
 A cli proxy tool specialized in file replacing
 
-[![Build Status](https://secure.travis-ci.org/goddyZhao/nproxy.png)](http://travis-ci.org/goddyZhao/nproxy)
+[![Build Status](https://secure.travis-ci.org/goddyZhao/cnproxy.png)](http://travis-ci.org/goddyZhao/cnproxy)
 
 ## Why NProxy
 
@@ -14,7 +14,7 @@ Maybe you have such question as why NProxy when we have [Fiddler](http://www.fid
 
 This is the main reason why NProxy is here. Besides, NProxy can improve the efficiency of my daily development for enterprise-level product with a bunch of complex building processes, which cost me lots of time.
 
-I've written a post named [NProxy: The Mjolnir for UI Developers](http://en.blog.goddyzhao.me/post/29470818841/nproxy-the-mjolnir-for-ui-developers)  and a keynote [NProxy: A Sharp Weapon for UI Developers](https://speakerdeck.com/u/goddyzhao/p/nproxy-a-sharp-weapon-for-ui-developers) to explain my reason for developing NProxy in detail.
+I've written a post named [NProxy: The Mjolnir for UI Developers](http://en.blog.goddyzhao.me/post/29470818841/cnproxy-the-mjolnir-for-ui-developers)  and a keynote [NProxy: A Sharp Weapon for UI Developers](https://speakerdeck.com/u/goddyzhao/p/cnproxy-a-sharp-weapon-for-ui-developers) to explain my reason for developing NProxy in detail.
 
 ## Features
 
@@ -25,29 +25,29 @@ I've written a post named [NProxy: The Mjolnir for UI Developers](http://en.blog
 
 ## Installation
 
-    npm install -g nproxy (node >= v0.8.x is required)
+    npm install -g cnproxy (node >= v0.8.x is required)
 
-If you are not familiar with Node.js and NPM, you can visit the [How to install NProxy](https://github.com/goddyZhao/nproxy/wiki/How-to-install-NProxy) wiki page to get detail information about installation of NProxy
+If you are not familiar with Node.js and NPM, you can visit the [How to install NProxy](https://github.com/goddyZhao/cnproxy/wiki/How-to-install-NProxy) wiki page to get detail information about installation of NProxy
 
 ## Usage
     
-    nproxy -l replace_rule.js 
+    cnproxy -l replace_rule.js
 
     Setting your browser's proxy to 127.0.0.1:port(8989 by default)
 
-If you don't know how to set proxy for browser, please read this wiki: [How to set brower's proxy](https://github.com/goddyZhao/nproxy/wiki/How-to-set-browser's-proxy)
+If you don't know how to set proxy for browser, please read this wiki: [How to set brower's proxy](https://github.com/goddyZhao/cnproxy/wiki/How-to-set-browser's-proxy)
 
 
 ### More Options:
 
-    Usage: nproxy [options]
+    Usage: cnproxy [options]
 
     Options:
 
       -h, --help         output usage information
       -V, --version      output the version number
       -l, --list [list]  Specify the replace rule file
-      -p, --port [port]  Specify the port nproxy will listen on(8989 by default)
+      -p, --port [port]  Specify the port cnproxy will listen on(8989 by default)
       -t, --timeout [timeout] Specify the request timeout (5 seconds by default)
 
 ## Template of Replace Rule file(should be a .js file)
@@ -114,7 +114,7 @@ If you don't know how to set proxy for browser, please read this wiki: [How to s
       }
     ];
 
-You can use the [template file](https://github.com/goddyzhao/nproxy/blob/master/replace-rule.sample.js) and replace it with your own configurations. 
+You can use the [template file](https://github.com/goddyzhao/cnproxy/blob/master/replace-rule.sample.js) and replace it with your own configurations.
 
 ## Quickly setup rule files for SF project
 

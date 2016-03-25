@@ -19,7 +19,7 @@
 
 ## v0.0.4
 
-    fix [connection timeout error](https://github.com/goddyZhao/nproxy/issues/4)
+    fix [connection timeout error](https://github.com/goddyZhao/cnproxy/issues/4)
 
 ## v0.0.3
     
