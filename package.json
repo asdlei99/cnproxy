@@ -1,6 +1,6 @@
 {
-  "name": "nproxy",
-  "author": "Goddy Zhao <goddy128@gmail.com> (http://goddyzhao.me)",
+  "name": "cnproxy",
+  "author": "WangYanMin <soocto@gmail.com> (http://www.010318.com)",
   "version": "1.4.5",
   "description": "A cli proxy tool specialized in file replacing",
   "dependencies": {
@@ -13,14 +13,14 @@
     "mocha": "*",
     "should": "*"
   },
-  "main": "./lib/nproxy",
-  "bin": {"nproxy": "./bin/nproxy"},
+  "main": "./lib/cnproxy",
+  "bin": {"nproxy": "./bin/cnproxy"},
   "scripts": {
     "test": "make test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/goddyZhao/nproxy.git"
+    "url": "https://github.com/LoadChange/cnproxy.git"
   },
   "keywords": [
     "node.js",
