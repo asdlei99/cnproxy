@@ -30,7 +30,7 @@ I've written a post named [NProxy: The Mjolnir for UI Developers](http://en.blog
 If you are not familiar with Node.js and NPM, you can visit the [How to install NProxy](https://github.com/goddyZhao/cnproxy/wiki/How-to-install-NProxy) wiki page to get detail information about installation of NProxy
 
 ## Usage
-    
+
     cnproxy -l replace_rule.js
 
     Setting your browser's proxy to 127.0.0.1:port(8989 by default)
@@ -68,12 +68,12 @@ If you don't know how to set proxy for browser, please read this wiki: [How to s
 
       // 3. replace combo file with src with absolute file path
       {
-        pattern: 'group/homepageTileFramework.*.js', 
+        pattern: 'group/homepageTileFramework.*.js',
         responder: [
           '/home/goddyzhao/workspace/webapp/ui/homepage/js/a.js',
           '/home/goddyzhao/workspace/webapp/ui/homepage/js/b.js',
           '/home/goddyzhao/workspace/webapp/ui/homepage/js/c.js'
-        ] 
+        ]
       },
 
       // 4. replace combo file with src with relative file path and specified dir
@@ -103,7 +103,7 @@ If you don't know how to set proxy for browser, please read this wiki: [How to s
 
       // 7. Map server image directory to local image directory with regular expression
       // This simple rule can replace multiple directories to corresponding locale ones
-      // For Example, 
+      // For Example,
       //   http://host:port/ui/a/img/... => /home/a/image/...
       //   http://host:port/ui/b/img/... => /home/b/image/...
       //   http://host:port/ui/c/img/... => /home/c/image/...

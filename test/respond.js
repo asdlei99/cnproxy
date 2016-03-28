@@ -31,7 +31,7 @@ describe('nproxy', function(){
     before(function(done){
       tHttpServer = targetServer.createHttpServer();
       tHttpsServer = targetServer.createHttpsServer();
-      servers = proxyServer(8989, {
+      servers = proxyServer(9010, {
         responderListFilePath: replaceListPath,
         debug: true
       });
@@ -45,7 +45,7 @@ describe('nproxy', function(){
      */
     it('should respond a local file according to a string pattern under http', function(done){
       util.request({
-        url: 'http://localhost:8989/http://localhost:3001/web/a.css'
+        url: 'http://localhost:9010/http://localhost:3001/web/a.css'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           buffer.toString().should.equal('ar.css');
@@ -56,14 +56,14 @@ describe('nproxy', function(){
 
     it('should respond a local file according to a regular express pattern under http', function(done){
       util.request({
-        url: 'http://localhost:8989/http://localhost:3001/web/b.css'
+        url: 'http://localhost:9010/http://localhost:3001/web/b.css'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           buffer.toString().should.equal('bstar.css');
-          
+
           //send the second request matching the same pattern
           util.request({
-            url: 'http://localhost:8989/http://localhost:3001/web/ba.css'
+            url: 'http://localhost:9010/http://localhost:3001/web/ba.css'
           }, function(res){
             validateResponseHeader(res, function(err, buffer){
               buffer.toString().should.equal('bstar.css');
@@ -76,7 +76,7 @@ describe('nproxy', function(){
 
     it('should respond local combo file with array responder under http', function(done){
       util.request({
-        url: 'http://localhost:8989/http://localhost:3001/web/combined.js'
+        url: 'http://localhost:9010/http://localhost:3001/web/combined.js'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           buffer.toString().should.equal('c1.js\nc2.js\n');
@@ -87,7 +87,7 @@ describe('nproxy', function(){
 
     it('should respond local combo file with object responder under http', function(done){
       util.request({
-        url: 'http://localhost:8989/http://localhost:3001/web/combined2.js'
+        url: 'http://localhost:9010/http://localhost:3001/web/combined2.js'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           buffer.toString().should.equal('c3.js\nc4.js\n');
@@ -98,7 +98,7 @@ describe('nproxy', function(){
 
     it('should map remote dir to local one with img under http', function(done){
       util.request({
-        url: 'http://localhost:8989/http://localhost:3001/web/img/avatar_dev.jpg'
+        url: 'http://localhost:9010/http://localhost:3001/web/img/avatar_dev.jpg'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           res.headers['content-type'].should.equal('image/jpeg');
@@ -109,7 +109,7 @@ describe('nproxy', function(){
 
     it('should map remote dir to local one with js or css under http', function(done){
       util.request({
-        url: 'http://localhost:8989/http://localhost:3001/web/js/hello.js'
+        url: 'http://localhost:9010/http://localhost:3001/web/js/hello.js'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           res.headers['content-type'].should.equal('application/javascript');
@@ -121,7 +121,7 @@ describe('nproxy', function(){
 
     it('should map remote dir to local one with js or css with query string under http', function(done){
       util.request({
-        url: 'http://localhost:8989/http://localhost:3001/web/js/hello.js?t=1'
+        url: 'http://localhost:9010/http://localhost:3001/web/js/hello.js?t=1'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           res.headers['content-type'].should.equal('application/javascript');
@@ -133,16 +133,16 @@ describe('nproxy', function(){
 
     it('should map remote dir to local one with regular expression', function(done){
       util.request({
-        url: 'http://localhost:8989/http://localhost:3001/ui/re/img/avatar.jpg'
+        url: 'http://localhost:9010/http://localhost:3001/ui/re/img/avatar.jpg'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           res.headers['content-type'].should.equal('image/jpeg');
 
           util.request({
-            url: 'http://localhost:8989/http://localhost:3001/ui/re/img/avatar2.jpg'
+            url: 'http://localhost:9010/http://localhost:3001/ui/re/img/avatar2.jpg'
           }, function(res){
             validateResponseHeader(res, function(err, buffer){
-              res.headers['content-type'].should.equal('image/jpeg');            
+              res.headers['content-type'].should.equal('image/jpeg');
               done();
             });
           });
@@ -156,7 +156,7 @@ describe('nproxy', function(){
      */
     it('should respond a local file according to a string pattern under https', function(done){
       util.request({
-        url: 'http://localhost:8989/https://localhost:3002/web/a.css'
+        url: 'http://localhost:9010/https://localhost:3002/web/a.css'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           buffer.toString().should.equal('ar.css');
@@ -167,14 +167,14 @@ describe('nproxy', function(){
 
     it('should respond a local file according to a regular express pattern under https', function(done){
       util.request({
-        url: 'http://localhost:8989/https://localhost:3002/web/b.css'
+        url: 'http://localhost:9010/https://localhost:3002/web/b.css'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           buffer.toString().should.equal('bstar.css');
-          
+
           //send the second request matching the same pattern
           util.request({
-            url: 'http://localhost:8989/https://localhost:3002/web/ba.css'
+            url: 'http://localhost:9010/https://localhost:3002/web/ba.css'
           }, function(res){
             validateResponseHeader(res, function(err, buffer){
               buffer.toString().should.equal('bstar.css');
@@ -187,7 +187,7 @@ describe('nproxy', function(){
 
     it('should respond local combo file with array responder under https', function(done){
       util.request({
-        url: 'http://localhost:8989/https://localhost:3002/web/combined.js'
+        url: 'http://localhost:9010/https://localhost:3002/web/combined.js'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           buffer.toString().should.equal('c1.js\nc2.js\n');
@@ -198,7 +198,7 @@ describe('nproxy', function(){
 
     it('should respond local combo file with object responder under https', function(done){
       util.request({
-        url: 'http://localhost:8989/https://localhost:3002/web/combined2.js'
+        url: 'http://localhost:9010/https://localhost:3002/web/combined2.js'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           buffer.toString().should.equal('c3.js\nc4.js\n');
@@ -209,7 +209,7 @@ describe('nproxy', function(){
 
     it('should map remote dir to local one with img under https', function(done){
       util.request({
-        url: 'http://localhost:8989/https://localhost:3002/web/img/avatar_dev.jpg'
+        url: 'http://localhost:9010/https://localhost:3002/web/img/avatar_dev.jpg'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           res.headers['content-type'].should.equal('image/jpeg');
@@ -220,7 +220,7 @@ describe('nproxy', function(){
 
     it('should map remote dir to local one with js or css under https', function(done){
       util.request({
-        url: 'http://localhost:8989/https://localhost:3002/web/js/hello.js'
+        url: 'http://localhost:9010/https://localhost:3002/web/js/hello.js'
       }, function(res){
         validateResponseHeader(res, function(err, buffer){
           res.headers['content-type'].should.equal('application/javascript');

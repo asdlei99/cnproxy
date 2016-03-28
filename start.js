@@ -1,4 +1,4 @@
-var nproxy = require('./');
+var cnproxy = require('./');
 
 var options = {
   timeout: 10,

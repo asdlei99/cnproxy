@@ -14,7 +14,7 @@
     "should": "*"
   },
   "main": "./lib/cnproxy",
-  "bin": {"nproxy": "./bin/cnproxy"},
+  "bin": {"cnproxy": "./bin/cnproxy"},
   "scripts": {
     "test": "make test"
   },
