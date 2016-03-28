@@ -2,7 +2,7 @@
 
 CNProxy是一个CLI代理工具
 
-[![Build Status](https://secure.travis-ci.org/user/cnproxy.png)](http://travis-ci.org/user/cnproxy)
+[![Build Status](https://travis-ci.org/LoadChange/cnproxy.svg)](https://travis-ci.org/LoadChange/cnproxy)
 
 ## 为什么选择CNProxy
 
