@@ -2,7 +2,7 @@
 
 CNProxy是一个CLI代理工具
 
-[![Build Status](https://secure.travis-ci.org/goddyZhao/cnproxy.png)](http://travis-ci.org/goddyZhao/cnproxy)
+[![Build Status](https://secure.travis-ci.org/user/cnproxy.png)](http://travis-ci.org/user/cnproxy)
 
 ## 为什么选择CNProxy
 
@@ -13,8 +13,6 @@ CNProxy是一个CLI代理工具
 * 支持目录映射
 
 这是要使用CNProxy的主要原因。此外,CNProxy可以提高日常开发企业级产品的效率与一堆复杂的构建过程。
-
-I've written a post named [NProxy: The Mjolnir for UI Developers](http://en.blog.goddyzhao.me/post/29470818841/cnproxy-the-mjolnir-for-ui-developers)  and a keynote [NProxy: A Sharp Weapon for UI Developers](https://speakerdeck.com/u/goddyzhao/p/cnproxy-a-sharp-weapon-for-ui-developers) to explain my reason for developing NProxy in detail.
 
 ## 产品特点
 
@@ -44,43 +42,44 @@ I've written a post named [NProxy: The Mjolnir for UI Developers](http://en.blog
 
     选项:
 
-      -h, --help         显示cnproxy帮助信息
-      -V, --version      显示当前cnproxy版本号
-      -l, --list [list]  指定代理所需的规则文件
-      -p, --port [port]  自定义代理端口号(默认端口:9010)
+      -h, --help              显示cnproxy帮助信息
+      -V, --version           显示当前cnproxy版本号
+      -l, --list [list]       指定代理所需的规则文件
+      -p, --port [port]       自定义代理端口号(默认端口:9010)
       -t, --timeout [timeout] 设置超时时间 (默认:5秒)
+      -c, --cookies [cookies] 设置代理请求携带的cookies
 
 ## 代理模板规则文件(请使用一个.js文件)
 
     module.exports = [
 
-      // 1. replace single file with local one
+      // 1. 与当地一个取代单一文件
       {
-        pattern: 'homepage.js',      // Match url you wanna replace
-        responder:  "/home/goddyzhao/workspace/homepage.js"
+        pattern: 'homepage.js',      // 你想替换匹配url
+        responder:  "/home/user/workspace/homepage.js"
       },
 
-      // 2. replace single file with web file
+      // 2. 用web文件替换单一文件
       {
-        pattern: 'homepage.js',      // Match url you wanna replace
+        pattern: 'homepage.js',      // 你想替换匹配url
         responder:  "http://www.anotherwebsite.com/assets/js/homepage2.js"
       },
 
-      // 3. replace combo file with src with absolute file path
+      // 3. 组合文件替换为src与绝对的文件路径
       {
         pattern: 'group/homepageTileFramework.*.js',
         responder: [
-          '/home/goddyzhao/workspace/webapp/ui/homepage/js/a.js',
-          '/home/goddyzhao/workspace/webapp/ui/homepage/js/b.js',
-          '/home/goddyzhao/workspace/webapp/ui/homepage/js/c.js'
+          '/home/user/workspace/webapp/ui/homepage/js/a.js',
+          '/home/user/workspace/webapp/ui/homepage/js/b.js',
+          '/home/user/workspace/webapp/ui/homepage/js/c.js'
         ]
       },
 
-      // 4. replace combo file with src with relative file path and specified dir
+      // 4. 组合文件替换为src相对文件路径和指定的dir
       {
         pattern: 'group/homepageTileFramework.*.js',
         responder: {
-          dir: '/home/goddyzhao/workspace/webapp/ui/homepage/js',
+          dir: '/home/user/workspace/webapp/ui/homepage/js',
           src: [
             'a.js',
             'b.js',
@@ -89,21 +88,21 @@ I've written a post named [NProxy: The Mjolnir for UI Developers](http://en.blog
         }
       },
 
-      // 5. Map server image directory to local image directory
+      // 5. 请求服务器的图片目录映射到本地图片目录
       {
-        pattern: 'ui/homepage/img',  // must be a string
-        responder: '/home/user/image/' //must be a absolute directory path
+        pattern: 'ui/homepage/img',  // 必须是一个字符串
+        responder: '/home/user/image/' // 必须是一个绝对目录路径
       },
 
-      // 6. Write responder with regular expression variables like $1, $2
+      // 6. 使用正则表达式
       {
         pattern: /https?:\/\/[\w\.]*(?::\d+)?\/ui\/(.*)_dev\.(\w+)/,
         responder: 'http://localhost/proxy/$1.$2'
       },
 
-      // 7. Map server image directory to local image directory with regular expression
-      // This simple rule can replace multiple directories to corresponding locale ones
-      // For Example,
+      // 7. 服务器映像目录映射到本地图像目录与正则表达式
+      // 这个简单的规则可以替代多个目录相应的环境
+      // 如下：
       //   http://host:port/ui/a/img/... => /home/a/image/...
       //   http://host:port/ui/b/img/... => /home/b/image/...
       //   http://host:port/ui/c/img/... => /home/c/image/...
@@ -114,11 +113,7 @@ I've written a post named [NProxy: The Mjolnir for UI Developers](http://en.blog
       }
     ];
 
-You can use the [template file](https://github.com/goddyzhao/cnproxy/blob/master/replace-rule.sample.js) and replace it with your own configurations.
-
-## Quickly setup rule files for SF project
-
-For UI Developers from SuccessFactors, here is a bonus for you guys. You can use the [sf-transfer](http://goddyzhao.github.com/sf-transfer) tool to transfer the combo xml file to NProxy rule file automatically!
+您可以使用这份模板 [代理模板文件](https://github.com/LoadChange/cnproxy/blob/master/replace-rule.sample.js) 文件替换成自己的配置。
 
 ## 开源许可证
 
