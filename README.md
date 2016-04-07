@@ -8,7 +8,7 @@ CNProxy是一个CLI代理工具，它Fork于[NProxy](https://github.com/goddyZha
 
 也许你有这样的疑问，为什么我们有了 [Fiddler](http://www.fiddler2.com/fiddler2/), [Charles](http://www.charlesproxy.com/), [Rythem](http://www.alloyteam.com/2012/05/web-front-end-tool-rythem-1/) 和 [Tinyproxy](https://banu.com/tinyproxy/)还需要CNProxy？是的，毫无疑问,他们都是伟大的工具,但他们不符合我的要求:
 
-* 支持Mac、Linux和Windows(尤其是Mac和Linux)
+* 支持Mac、Linux和Windows(尤其是Linux和Mac)
 * 支持更换组合文件与源文件分开
 * 支持目录映射
 

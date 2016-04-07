@@ -6,12 +6,12 @@ var conf = require('../package.json');
 
 program
     .version(conf.version)
-    .option('-l, --list [list]', 'Specify the replace rule file')
-    .option('-c, --cookies [cookies]', 'set cookie')
-    .option('-p, --port [port]', 'Specify the port nproxy will listen on(9010 by default)', parseInt)
-    .option('-t, --timeout [timeout]', 'Specify the request timeout(5 seconds by default)', parseInt)
-    .option('-d, --debug', 'Enable debug mode')
-    .option('-n, --networks', 'Display network interface list')
+    .option('-l, --list [list]', '指定替换规则文件')
+    .option('-c, --cookies [cookies]', '设置请求代理URL时携带的Cookies')
+    .option('-p, --port [port]', '自定义CNProxy启动后的监听端口号(默认:9010)', parseInt)
+    .option('-t, --timeout [timeout]', '指定请求超时时间(默认:5秒)', parseInt)
+    .option('-d, --debug', '启用调试模式')
+    .option('-n, --networks', '显示网络接口列表')
     .parse(process.argv);
 
 cnproxy(program.port, {
