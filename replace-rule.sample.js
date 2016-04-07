@@ -57,5 +57,13 @@ module.exports = [
   {
     pattern: /ui\/(.*)\/img\//,
     responder: '/home/$1/image/'
+  },
+  // 8. 使用cookies ,单独设置某一个匹配规则的cookies，
+  // 如果需要将全部匹配的url统一设置cookies
+  // 可以在启动cnproxy时使用-c 'cookies...'
+  {
+    pattern: /http:\/\/127.0.0.1:8080\/user\/upload\/(.*)$/,
+    responder: 'http://www.qq.com/vip/upload/$1',
+    cookies: '_xsrf=2|330a5789|c9627c4a257a5b6067094df2d9a1e1d8|1459947169; SESSION=e8eb5e4b-2ebc-413a-9055-e5b69471146d'
   }
 ];
