@@ -29,7 +29,7 @@ describe('nproxy', function(){
      */
     it('should forward non-replaced css file via get under http', function(done){
       util.request({
-        url: 'http://localhost:8989/http://localhost:3001/request?type=css',
+        url: 'http://localhost:9010/http://localhost:3001/request?type=css',
       }, function(res){
         res.statusCode.should.equal(200);
         res.headers['content-type'].should.equal('text/css');
@@ -40,7 +40,7 @@ describe('nproxy', function(){
 
     it('should forward non-replaced post request under http', function(done){
       util.request({
-        url: 'http://localhost:8989/http://localhost:3001/request?type=form',
+        url: 'http://localhost:9010/http://localhost:3001/request?type=form',
         method: 'POST',
         data: '{"username": "goddy", "password": "123"}'
       }, function(res){
@@ -52,7 +52,7 @@ describe('nproxy', function(){
 
     it('should forward non-replaced request with cookies under http', function(done){
       util.request({
-        url: 'http://localhost:8989/http://localhost:3001/request?type=cookie',
+        url: 'http://localhost:9010/http://localhost:3001/request?type=cookie',
         method: 'POST',
         headers: {
           'Cookie': 'username=goddy;password=123'
@@ -69,7 +69,7 @@ describe('nproxy', function(){
      */
     it('should forward non-replaced css file via get under https', function(done){
       util.request({
-        url: 'http://localhost:8989/https://localhost:3002/request?type=css',
+        url: 'http://localhost:9010/https://localhost:3002/request?type=css',
       }, function(res){
         res.statusCode.should.equal(200);
         res.headers['content-type'].should.equal('text/css');
@@ -80,7 +80,7 @@ describe('nproxy', function(){
 
     it('should forward non-replaced post request under https', function(done){
       util.request({
-        url: 'http://localhost:8989/https://localhost:3002/request?type=form',
+        url: 'http://localhost:9010/https://localhost:3002/request?type=form',
         method: 'POST',
         data: '{"username": "goddy", "password": "123"}'
       }, function(res){
@@ -92,7 +92,7 @@ describe('nproxy', function(){
 
     it('should forward non-replaced request with cookies under https', function(done){
       util.request({
-        url: 'http://localhost:8989/https://localhost:3002/request?type=cookie',
+        url: 'http://localhost:9010/https://localhost:3002/request?type=cookie',
         method: 'POST',
         headers: {
           'Cookie': 'username=goddy;password=123'

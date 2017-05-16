@@ -1,6 +1,6 @@
 {
   "name": "cnproxy",
-  "author": "WangYanMin <soocto@gmail.com> (http://www.010318.com)",
+  "author": "WangYanMin <soocto@gmail.com>",
   "version": "2.0.4",
   "description": "CNProxy是一个CLI代理工具",
   "dependencies": {

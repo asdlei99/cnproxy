@@ -35,7 +35,7 @@ describe('cnproxy', function(){
         originRuleContent = bufferData;
 
         tHttpServer = targetServer.createHttpServer();
-        servers = proxyServer(8989, {
+        servers = proxyServer(9010, {
           responderListFilePath: replaceListPath
         });
 
@@ -56,7 +56,7 @@ describe('cnproxy', function(){
       .on('close', function(){
         setTimeout(function(){
           util.request({
-            url: 'http://localhost:8989/http://localhost:3001/web/hot-deploy.js'
+            url: 'http://localhost:9010/http://localhost:3001/web/hot-deploy.js'
           }, function(res){
             validateResponseHeader(res, function(err, buffer){
               buffer.toString().should.equal('replaced-hot-deploy.js');

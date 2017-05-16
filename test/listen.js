@@ -16,7 +16,7 @@ describe('cnproxy', function(){
   });
 
   describe('.listen', function(){
-    it('should listen on port 8989 by default', function(done){
+    it('should listen on port 9010 by default', function(done){
       done();
     });
   });
