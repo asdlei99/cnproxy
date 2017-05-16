@@ -3,7 +3,7 @@ var targetServer = require('./support/target-server');
 var proxyServer = require('../');
 var replaceListPath = path.join(__dirname, 'support', 'replace-list.js');
 
-describe('nproxy', function(){
+describe('cnproxy', function(){
   var servers;
   var httpServer;
   var httpsServer;
