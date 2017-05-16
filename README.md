@@ -1,6 +1,6 @@
 # CNProxy
 
-CNProxy是一个CLI代理工具，它Fork于[NProxy](https://github.com/goddyZhao/nproxy)，这是一款非常棒的代理工具，可是我需要一些自定义的功能。感谢[Goddy Zhao](https://github.com/goddyZhao) 提供的代码，此副本将直接跳过1.0版本。
+CNProxy是一个CLI代理工具
 
 [![Build Status](https://travis-ci.org/LoadChange/cnproxy.svg)](https://travis-ci.org/LoadChange/cnproxy)
 
