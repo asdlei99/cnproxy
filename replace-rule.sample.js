@@ -13,7 +13,7 @@ module.exports = [
     },
 
     // 3. 组合文件替换为src与绝对的文件路径
-    {
+    { 
         pattern: 'group/homepageTileFramework.*.js',
         responder: [
             '/home/user/workspace/webapp/ui/homepage/js/a.js',
