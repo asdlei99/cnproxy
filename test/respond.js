@@ -9,7 +9,7 @@ function validateResponseHeader(res, callback){
   var data = [];
 
   res.statusCode.should.equal(200);
-  res.headers['server'].should.equal('nproxy');
+  res.headers['server'].should.equal('cnproxy');
 
   res.on('data', function(chunk){
     data.push(chunk);
@@ -20,7 +20,7 @@ function validateResponseHeader(res, callback){
   });
 };
 
-describe('nproxy', function(){
+describe('cnproxy', function(){
   describe('.respond', function(){
     var tHttpServer;
     var tHttpsServer;

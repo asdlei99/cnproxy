@@ -5,7 +5,7 @@ var targetServer = require('./support/target-server');
 var proxyServer = require('../');
 var replaceListPath = path.join(__dirname, 'support', 'replace-list.js');
 
-describe('nproxy', function(){
+describe('cnproxy', function(){
   var tHttpServer; // target server
   var tHttpsServer;
   var servers;
@@ -15,7 +15,7 @@ describe('nproxy', function(){
   before(function(done){
     tHttpServer = targetServer.createHttpServer();
     tHttpsServer = targetServer.createHttpsServer();
-    servers = proxyServer(8989, {
+    servers = proxyServer(9010, {
       responderListFilePath: replaceListPath
     });
     pHttpServer = servers.httpServer;
