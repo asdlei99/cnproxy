@@ -2,11 +2,7 @@
 
 CNProxy是一个CLI代理工具
 
-[![Build Status](https://travis-ci.org/LoadChange/cnproxy.svg)](https://travis-ci.org/LoadChange/cnproxy)
-
 ## 为什么选择CNProxy
-
-也许你有这样的疑问，为什么我们有了 [Fiddler](http://www.fiddler2.com/fiddler2/), [Charles](http://www.charlesproxy.com/), [Rythem](http://www.alloyteam.com/2012/05/web-front-end-tool-rythem-1/) 和 [Tinyproxy](https://banu.com/tinyproxy/)还需要CNProxy？是的，毫无疑问,他们都是伟大的工具,但他们不符合我的要求:
 
 * 支持Mac、Linux和Windows(尤其是Linux和Mac)
 * 支持更换组合文件与源文件分开
@@ -23,7 +19,7 @@ CNProxy是一个CLI代理工具
 
 ## 安装说明
 
-    npm install -g cnproxy (node >= v0.8.x is required)
+    npm install -g cnproxy
 
 如果你不熟悉Node.JS和NPM,你可以访问 [NPM包管理器介绍](http://www.runoob.com/nodejs/nodejs-npm.html)
 
@@ -35,6 +31,13 @@ CNProxy是一个CLI代理工具
 
 如果你不知道如何设置浏览器代理,请阅读这篇文章: [如何设置浏览器代理](http://jingyan.baidu.com/article/fedf0737761a2935ac8977d9.html)
 
+## 安装证书
+    
+    设置好代理后，访问 http://loadchange.com/getssl 安装证书
+    
+    IOS 11后的手机，安装好证书后还需要在 设置->通用->关于本机->证书信任设置-> 找到 CNProxy CA 将其打开
+
+
 
 ### 选项介绍:
 
@@ -45,6 +48,7 @@ CNProxy是一个CLI代理工具
       -h, --help              显示cnproxy帮助信息
       -V, --version           显示当前cnproxy版本号
       -l, --list [list]       指定代理所需的规则文件
+      -w, --watch [watch]       指定需要观察的URL列表
       -p, --port [port]       自定义代理端口号(默认端口:9010)
       -t, --timeout [timeout] 设置超时时间 (默认:5秒)
       -c, --cookies [cookies] 设置代理请求携带的cookies
