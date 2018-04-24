@@ -50,14 +50,8 @@ function cnproxy({port, config, timeout, debug, networks, watch}) {
 
     if (watch) {
         let pattern = typeof watch === 'string' ? new RegExp(watch) : watch
-        sslConnectInterceptor = (clientReq, clientSocket, head) => {
-            let url = utils.getFullUrl(clientReq)
-            // console.log('sslConnectInterceptor', url, pattern.test(url))
-            return pattern.test(url)
-        }
         requestInterceptor = (requestOptions, clientReq, clientRes, ssl, next) => {
-            let url = utils.getFullUrl(clientReq)
-            // console.log('requestInterceptor', url, pattern.test(url))
+            let url = utils.getFullUrl(requestOptions)
             if (pattern.test(url)) {
                 console.log('\n')
                 log.info('[URL]:' + url)
@@ -70,6 +64,16 @@ function cnproxy({port, config, timeout, debug, networks, watch}) {
                 }
             }
             next()
+        }
+    } else if (configuration) {
+        if (configuration.sslConnectInterceptor) {
+            sslConnectInterceptor = configuration.sslConnectInterceptor
+        }
+        if (configuration.requestInterceptor) {
+            requestInterceptor = configuration.requestInterceptor
+        }
+        if (configuration.responseInterceptor) {
+            responseInterceptor = configuration.responseInterceptor
         }
     }
 
@@ -118,6 +122,7 @@ function cnproxy({port, config, timeout, debug, networks, watch}) {
         server.on('error', (e) => log.error(e))
 
         server.on('request', (req, res) => {
+            log.debug(req.url)
             let ssl = false;
             if (req.url === 'http://loadchange.com/getssl') {
                 try {
@@ -125,7 +130,7 @@ function cnproxy({port, config, timeout, debug, networks, watch}) {
                     res.setHeader('Content-Type', 'application/x-x509-ca-cert')
                     res.end(fileString.toString());
                 } catch (e) {
-                    console.log(e);
+                    log.error(e)
                     res.end('please create certificate first!!')
                 }
                 return

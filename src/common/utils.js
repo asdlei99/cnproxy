@@ -66,7 +66,6 @@ let utils = {
         })
     },
     getFullUrl(clientReq) {
-        console.log('clientReq', clientReq.url, clientReq.url.href)
         let {protocol, hostname, port, path} = clientReq
         if ((protocol === 'http:' && port === 80) || protocol === 'https:' && port === 443) {
             port = ''

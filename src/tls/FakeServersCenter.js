@@ -25,7 +25,9 @@ module.exports = class FakeServersCenter {
             try {
                 delServerObj.serverObj.server.close()
             } catch (e) {
+                console.log('=========')
                 console.log(e)
+                console.log('=========')
             }
         }
         this.queue.push(serverPromiseObj)

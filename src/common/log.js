@@ -20,11 +20,11 @@ const log = {
 
         switch (type) {
             case logType.ERROR:
-                console.log(`[INFO] ${msg}`.error)
+                console.log(`[ERROR] ${msg}`.error)
                 break
 
             case logType.WARN:
-                console.log(`[INFO] ${msg}`.warn)
+                console.log(`[WARN] ${msg}`.warn)
                 break
 
             case logType.INFO:
@@ -32,7 +32,7 @@ const log = {
                 break
 
             case logType.DEBUG:
-                console.log(`[INFO] ${msg}`.debug)
+                console.log(`[DEBUG] ${msg}`.debug)
                 break
         }
     },
