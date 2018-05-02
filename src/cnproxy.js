@@ -75,6 +75,9 @@ function cnproxy({port, config, timeout, debug, networks, watch}) {
         if (configuration.responseInterceptor) {
             responseInterceptor = configuration.responseInterceptor
         }
+        if (configuration.middlewares) {
+            middlewares = configuration.middlewares
+        }
     }
 
 
