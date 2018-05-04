@@ -80,14 +80,13 @@ let utils = {
      *
      * @param {Object} req
      */
-    processUrl: function (req) {
+    processUrl(req, rOptions) {
         let hostArr = req.headers.host.split(':')
         let hostname = hostArr[0]
         let port = hostArr[1]
 
         let parsedUrl = url.parse(req.url, true)
-
-        parsedUrl.protocol = parsedUrl.protocol || req.type + ":"
+        parsedUrl.protocol = parsedUrl.protocol || (req.type ? req.type + ':' : null) || rOptions.protocol
         parsedUrl.hostname = parsedUrl.hostname || hostname
 
         if (!parsedUrl.port && port) {
@@ -97,7 +96,7 @@ let utils = {
         return url.format(parsedUrl)
     },
 
-    processUrlWithQSAbandoned: function (urlStr) {
+    processUrlWithQSAbandoned(urlStr) {
         return urlStr.replace(/\?.*$/, '')
     },
 
@@ -107,7 +106,7 @@ let utils = {
      * @param {Object} options options about url, method and headers
      * @param {Function} callback callback to handle the response object
      */
-    request: function (options, callback) {
+    request(options, callback) {
         let parsedUrl
         let requestUrl
         let requestMethod
@@ -222,7 +221,7 @@ let utils = {
      * @param {String} dest the path of dest file
      *
      */
-    concat: function (fileList, cb) {
+    concat(fileList, cb) {
         let group
         let buffers = []
         if (!Array.isArray(fileList)) {
@@ -264,7 +263,7 @@ let utils = {
      *
      * @return {Array} buffer array containing the file contents and appended enter character
      */
-    _appendEnter: function (files) {
+    _appendEnter(files) {
         let newBuffers = []
         files.forEach(function (buffer) {
             newBuffers.push(buffer)
@@ -283,7 +282,7 @@ let utils = {
      *
      * @return {String} matched file path
      */
-    findFile: function (directory, filename, callback) {
+    findFile(directory, filename, callback) {
         Step(
             function readDirectory() {
                 fs.readdir(directory, this)

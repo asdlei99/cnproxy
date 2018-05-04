@@ -81,7 +81,7 @@ module.exports = {
         console.log('请求拦截器:requestInterceptor')
         console.log(`正在访问：${rOptions.protocol}//${rOptions.hostname}:${rOptions.port}`);
         console.log('cookie:', rOptions.headers.cookie);
-        res.end('HELLO CNPROXY!');
+        // res.end('HELLO CNPROXY!');
         next();
     },
 

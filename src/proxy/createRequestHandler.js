@@ -1,5 +1,6 @@
 const http = require('http')
 const https = require('https')
+const log = require('../common/log')
 const commonUtil = require('../common/utils')
 
 // create requestHandler function
@@ -21,9 +22,34 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
 
         let requestInterceptorPromise = () => {
             return new Promise((resolve, reject) => {
+
                 let next = () => {
                     resolve()
                 }
+
+                let url = commonUtil.processUrl(req, rOptions)
+                log.debug('respond: ' + url)
+
+                let respondObj, originalPattern, responder, pattern
+                for (let i = 0, len = middlewares.length; i < len; i++) {
+                    respondObj = middlewares[i]
+                    originalPattern = respondObj.pattern
+                    responder = respondObj.responder
+
+                    // adapter pattern to RegExp object
+                    if (typeof originalPattern !== 'string' && !(originalPattern instanceof RegExp)) {
+                        log.error()
+                        throw new Error('pattern must be a RegExp Object or a string for RegExp')
+                    }
+
+                    pattern = typeof originalPattern === 'string' ? new RegExp(originalPattern) : originalPattern
+
+                    if (pattern.test(url)) {
+                        log.debug('匹配:' + originalPattern)
+                        break
+                    }
+                }
+
                 try {
                     if (typeof requestInterceptor === 'function') {
                         requestInterceptor.call(null, rOptions, req, res, ssl, next)
