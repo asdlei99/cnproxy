@@ -46,6 +46,15 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
 
                     if (pattern.test(url)) {
                         log.debug('匹配:' + originalPattern)
+                        if (typeof responder === 'string') {
+                            console.log('string')
+                        } else if (Array.isArray(responder)) {
+                            console.log('array')
+                        } else if (typeof responder === 'object' && responder !== null) {
+                            console.log('object')
+                        } else {
+                            log.error(`Responder for ${url} is invalid!`)
+                        }
                         break
                     }
                 }
@@ -170,4 +179,33 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
             }
         )
     }
+}
+
+/**
+ * For some responder with regular expression variable like $1, $2,
+ * it should be replaced with the actual value
+ *
+ * @param {Regular Express Object} pattern matched array
+ * @param {String} responder, replaced string
+ */
+function fixResponder(url, pattern, responder) {
+    let $v = /\$\d+/g
+    let m
+    let newRx
+    if (!$v.test(responder)) {
+        return responder
+    }
+
+    m = url.match(pattern)
+
+    if (!Array.isArray(m)) {
+        return responder
+    }
+
+    for (var i = 0, l = m.length; i < l; i++) {
+        newRx = new RegExp('\\$' + i, 'g');
+        responder = responder.replace(newRx, m[i])
+    }
+
+    return responder
 }
