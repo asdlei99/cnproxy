@@ -13,14 +13,14 @@ function respondFromWebFile(filePath, req, res, next) {
         url: filePath,
         method: req.method,
         headers: req.headers
-    }, function (err, data, proxyRes) {
+    }, (err, data, proxyRes) => {
         if (err) {
             throw err
         }
         res.writeHead(200, proxyRes.headers)
         res.write(data)
         res.end()
-
+        next()
     })
 }
 

@@ -8,8 +8,8 @@ module.exports = {
 
         // 2. 用web文件替换单一文件
         {
-            pattern: 'homepage.js',      // 你想替换匹配url
-            responder: "http://www.anotherwebsite.com/assets/js/homepage2.js"
+            pattern: 'myvue.js',      // 你想替换匹配url
+            responder: "https://cdn.bootcss.com/vue/2.5.16/vue.js"
         },
 
         // 3. 组合文件替换为src与绝对的文件路径
