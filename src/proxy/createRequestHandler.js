@@ -1,7 +1,11 @@
+const fs = require('fs')
 const http = require('http')
 const https = require('https')
 const log = require('../common/log')
 const commonUtil = require('../common/utils')
+const responders = require('../responders')
+
+const httpRxg = /^http/
 
 // create requestHandler function
 module.exports = function createRequestHandler(requestInterceptor, responseInterceptor, middlewares, externalProxy) {
@@ -47,7 +51,22 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
                     if (pattern.test(url)) {
                         log.debug('匹配:' + originalPattern)
                         if (typeof responder === 'string') {
-                            console.log('string')
+                            if (httpRxg.test(responder)) {
+                                responders.respondFromWebFile(responder, req, res, next)
+                            } else {
+                                fs.stat(responder, (err, stat) => {
+                                    if (err) {
+                                        log.error(`${err.message} for ${url} then directly forward it!`)
+                                        next()
+                                        return
+                                    }
+                                    if (stat.isFile()) { // local file
+                                        responders.respondFromLocalFile(responder, req, res, next)
+                                    } else if (stat.isDirectory()) { // directory mapping
+                                        console.log('isDirectory')
+                                    }
+                                })
+                            }
                         } else if (Array.isArray(responder)) {
                             console.log('array')
                         } else if (typeof responder === 'object' && responder !== null) {
@@ -55,7 +74,8 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
                         } else {
                             log.error(`Responder for ${url} is invalid!`)
                         }
-                        break
+                        next()
+                        return
                     }
                 }
 
