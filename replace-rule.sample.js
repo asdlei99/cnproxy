@@ -14,19 +14,19 @@ module.exports = {
 
         // 3. 组合文件替换为src与绝对的文件路径
         {
-            pattern: 'group/homepageTileFramework.*.js',
+            pattern: 'group/test.*.js',
             responder: [
-                '/home/user/workspace/webapp/ui/homepage/js/a.js',
-                '/home/user/workspace/webapp/ui/homepage/js/b.js',
-                '/home/user/workspace/webapp/ui/homepage/js/c.js'
+                '/Users/wangyanmin/code/other/test/a.js',
+                '/Users/wangyanmin/code/other/test/b.js',
+                '/Users/wangyanmin/code/other/test/c.js'
             ]
         },
 
         // 4. 组合文件替换为src相对文件路径和指定的dir
         {
-            pattern: 'group/homepageTileFramework.*.js',
+            pattern: 'group/test.*.js',
             responder: {
-                dir: '/home/user/workspace/webapp/ui/homepage/js',
+                dir: '/Users/wangyanmin/code/other/test',
                 src: [
                     'a.js',
                     'b.js',

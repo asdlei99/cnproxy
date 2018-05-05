@@ -36,25 +36,26 @@ function respondFromCombo(options, req, res, next) {
             throw e
         }
 
-        src = src.map(function (file) {
+        src = src.map(file => {
             return path.join(dir, file)
         })
     }
 
     //Read the local files and concat together
     if (src.length > 0) {
-        utils.concat(src, function (err, data) {
+        utils.concat(src, (err, data) => {
             if (err) {
                 throw err
             }
             res.statusCode = 200
 
             res.setHeader('Content-Length', data.length)
-            res.setHeader('Content-Type', mime.lookup(src[0]))
+            res.setHeader('Content-Type', mime.getType(src[0]))
             res.setHeader('Server', 'CNPROXY')
 
             res.write(data)
             res.end()
+            next()
         })
     }
 }

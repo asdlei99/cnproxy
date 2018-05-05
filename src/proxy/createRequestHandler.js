@@ -88,7 +88,7 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
                                 })
                             }
                         } else if (Array.isArray(responder)) {
-                            console.log('array')
+                            responders.respondFromCombo({dir: null, src: responder}, req, res, next)
                         } else if (typeof responder === 'object' && responder !== null) {
                             console.log('object')
                         } else {
