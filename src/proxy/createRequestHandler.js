@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 const http = require('http')
 const https = require('https')
 const log = require('../common/log')
@@ -6,6 +7,9 @@ const commonUtil = require('../common/utils')
 const responders = require('../responders')
 
 const httpRxg = /^http/
+
+let extDirectoryOfRequestUrl
+let localDirectory
 
 // create requestHandler function
 module.exports = function createRequestHandler(requestInterceptor, responseInterceptor, middlewares, externalProxy) {
@@ -63,7 +67,23 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
                                     if (stat.isFile()) { // local file
                                         responders.respondFromLocalFile(responder, req, res, next)
                                     } else if (stat.isDirectory()) { // directory mapping
-                                        console.log('isDirectory')
+                                        let urlWithoutQS = commonUtil.processUrlWithQSAbandoned(url)
+                                        let directoryPattern = url.match(pattern)[0]
+                                        extDirectoryOfRequestUrl = urlWithoutQS.substr(urlWithoutQS.indexOf(directoryPattern) + directoryPattern.length)
+                                        localDirectory = path.join(responder, path.dirname(extDirectoryOfRequestUrl))
+
+                                        commonUtil.findFile(localDirectory,
+                                            path.basename(extDirectoryOfRequestUrl),
+                                            (err, file) => {
+                                                log.debug(`Find local file: ${file} for (${url})`)
+                                                if (err) {
+                                                    log.error(`${err.message} for (${url})' then directly forward it!`)
+                                                    next()
+                                                } else {
+                                                    responders.respondFromLocalFile(file, req, res, next);
+                                                }
+                                            }
+                                        )
                                     }
                                 })
                             }
@@ -74,7 +94,6 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
                         } else {
                             log.error(`Responder for ${url} is invalid!`)
                         }
-                        next()
                         return
                     }
                 }

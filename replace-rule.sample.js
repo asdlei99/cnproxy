@@ -38,7 +38,7 @@ module.exports = {
         // 5. 请求服务器的图片目录映射到本地图片目录
         {
             pattern: 'ui/homepage/img',  // 必须是一个字符串
-            responder: '/home/user/image/' // 必须是一个绝对目录路径
+            responder: '/Users/wangyanmin/Downloads/test_img' // 必须是一个绝对目录路径
         },
 
         // 6. 使用正则表达式
