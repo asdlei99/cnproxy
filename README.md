@@ -150,7 +150,7 @@ CNProxy是一个CLI代理工具
     }
 
 
-您可以使用这份模板 [代理模板文件](https://github.com/LoadChange/cnproxy/blob/master/replace-rule.sample.js) 文件替换成自己的配置。
+您可以使用这份模板 [代理模板文件](https://github.com/LoadChange/cnproxy/blob/master/config.sample.js) 文件替换成自己的配置。
 
 ## 开源许可证
 
