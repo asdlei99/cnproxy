@@ -51,7 +51,7 @@ function cnproxy({port, config, timeout, debug, networks, watch}) {
     if (watch) {
         let pattern = typeof watch === 'string' ? new RegExp(watch) : watch
         requestInterceptor = (requestOptions, clientReq, clientRes, ssl, next) => {
-            let url = utils.getFullUrl(requestOptions)
+            let url = utils.processUrl(clientReq, requestOptions)
             if (pattern.test(url)) {
                 console.log('\n')
                 log.info('[URL]:' + url)
@@ -113,12 +113,12 @@ function cnproxy({port, config, timeout, debug, networks, watch}) {
 
         if (networks) {
             log.info('Network interfaces:');
-            let interfaces = require('os').networkInterfaces();
+            let interfaces = require('os').networkInterfaces()
             for (let key in interfaces) {
                 log.info(key)
                 interfaces[key].forEach((item) => {
-                    log.info('  ' + item.address + '\t' + item.family);
-                });
+                    log.info(`  ${item.address}\t${item.family}`)
+                })
             }
         }
 

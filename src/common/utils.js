@@ -65,15 +65,6 @@ let utils = {
             callback()
         })
     },
-    getFullUrl(clientReq) {
-        let {protocol, hostname, port, path} = clientReq
-        if ((protocol === 'http:' && port === 80) || protocol === 'https:' && port === 443) {
-            port = ''
-        } else {
-            port = ':' + port
-        }
-        return `${protocol}//${hostname}${port}${path}`
-    },
     /**
      * Process url with valid format especially in https cases
      * in which, req.url doesn't include protocol and host
