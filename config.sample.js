@@ -56,7 +56,7 @@ module.exports = {
         //   ...
         {
             pattern: /ui\/(.*)\/img\//,
-            responder: '/home/$1/image/'
+            responder: '/Users/wangyanmin/Downloads/test_img/$1/img/'
         },
         // 8. 使用cookies ,单独设置某一个匹配规则的cookies，
         // 如果需要将全部匹配的url统一设置cookies

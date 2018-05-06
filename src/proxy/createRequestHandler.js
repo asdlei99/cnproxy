@@ -38,11 +38,12 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
                 let url = commonUtil.processUrl(req, rOptions)
                 log.debug('respond: ' + url)
 
-                let respondObj, originalPattern, responder, pattern
+                let respondObj, originalPattern, responder, pattern, cookies
                 for (let i = 0, len = middlewares.length; i < len; i++) {
                     respondObj = middlewares[i]
                     originalPattern = respondObj.pattern
                     responder = respondObj.responder
+                    cookies = respondObj.cookies
 
                     // adapter pattern to RegExp object
                     if (typeof originalPattern !== 'string' && !(originalPattern instanceof RegExp)) {
@@ -53,7 +54,11 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
                     pattern = typeof originalPattern === 'string' ? new RegExp(originalPattern) : originalPattern
 
                     if (pattern.test(url)) {
+
                         log.debug('匹配:' + originalPattern)
+
+                        responder = fixResponder(url, pattern, responder)
+
                         if (typeof responder === 'string') {
                             if (httpRxg.test(responder)) {
                                 responders.respondFromWebFile(responder, req, res, next)
@@ -72,9 +77,7 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
                                         extDirectoryOfRequestUrl = urlWithoutQS.substr(urlWithoutQS.indexOf(directoryPattern) + directoryPattern.length)
                                         localDirectory = path.join(responder, path.dirname(extDirectoryOfRequestUrl))
 
-                                        commonUtil.findFile(localDirectory,
-                                            path.basename(extDirectoryOfRequestUrl),
-                                            (err, file) => {
+                                        commonUtil.findFile(localDirectory, path.basename(extDirectoryOfRequestUrl), (err, file) => {
                                                 log.debug(`Find local file: ${file} for (${url})`)
                                                 if (err) {
                                                     log.error(`${err.message} for (${url})' then directly forward it!`)
@@ -90,7 +93,7 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
                         } else if (Array.isArray(responder)) {
                             responders.respondFromCombo({dir: null, src: responder}, req, res, next)
                         } else if (typeof responder === 'object' && responder !== null) {
-                            console.log('object')
+                            responders.respondFromCombo({dir: responder.dir, src: responder.src}, req, res, next)
                         } else {
                             log.error(`Responder for ${url} is invalid!`)
                         }

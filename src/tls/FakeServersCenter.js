@@ -4,6 +4,7 @@ const tls = require('tls')
 const pki = forge.pki
 const tlsUtils = require('./tlsUtils')
 const CertAndKeyContainer = require('./CertAndKeyContainer')
+const log = require('../common/log')
 
 
 module.exports = class FakeServersCenter {
@@ -25,9 +26,7 @@ module.exports = class FakeServersCenter {
             try {
                 delServerObj.serverObj.server.close()
             } catch (e) {
-                console.log('=========')
-                console.log(e)
-                console.log('=========')
+                log.error(e)
             }
         }
         this.queue.push(serverPromiseObj)
@@ -51,7 +50,7 @@ module.exports = class FakeServersCenter {
             mappingHostNames: [hostname] // temporary hostname
         }
 
-        let promise = new Promise((resolve, reject) => {
+        let promise = new Promise((resolve) => {
 
             (async () => {
                 let certObj = await this.certAndKeyContainer.getCertPromise(hostname, port)
