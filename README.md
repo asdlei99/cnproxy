@@ -37,6 +37,9 @@ CNProxy是一个CLI代理工具
     
     IOS 11后的手机，安装好证书后还需要在 设置->通用->关于本机->证书信任设置-> 找到 CNProxy CA 将其打开
 
+    mac 安装
+
+     sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ~/.cnproxy/cnproxy.ca.crt
 
 
 ### 选项介绍:
