@@ -55,7 +55,7 @@ module.exports = function createRequestHandler(requestInterceptor, responseInter
 
                     if (pattern.test(url)) {
 
-                        log.debug('匹配:' + originalPattern)
+                        log.debug(`匹配:${originalPattern}`)
 
                         responder = fixResponder(url, pattern, responder)
 
